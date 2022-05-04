@@ -13,6 +13,9 @@ export class LoginComponent implements OnInit {
 
   form: FormGroup;
   userLogin: User = new User();
+  alert: Boolean = false;
+  alertNull: Boolean = false;
+
 
   constructor(
     private formBuilder: FormBuilder,
@@ -32,17 +35,29 @@ export class LoginComponent implements OnInit {
 
 
   onSubmit() {
-    this.userService.login(this.form.value['username']).subscribe((data: User) => {
-      if (data.email) {
-        console.log("navegaS")
-        this.router.navigate(["products/" + data.isAdmin]);
+    if (this.form.value['username'] == '' || this.form.value['password'] == '') {
+      this.alert = true;
+    } else {
+      this.userService.login(this.form.value['username'], this.form.value['password']).subscribe((data: User) => {
+        if (data.email) {
+          console.log("navegaS")
+          this.router.navigate(["products/" + data.isAdmin]);
 
-      }
-    });
+        } else {
+          this.alertNull = true;
+        }
+      });
+    }
+
 
   }
 
   registerUser() {
     this.router.navigate(["register"]);
+  }
+
+  closeAlert() {
+    this.alert = false;
+    this.alertNull = false;
   }
 }

@@ -14,8 +14,8 @@ export class UserService {
   constructor(private http: HttpClient) {
   }
 
-  login(nickname: String): Observable<User> {
-    return this.http.get<User>(`${this.baseUrl}singIn/${nickname}`);
+  login(nickname: String, password: String): Observable<User> {
+    return this.http.get<User>(`${this.baseUrl}singIn/${nickname}/${password}`);
   }
 
   saveNewUser(user: User): Observable<User> {

@@ -24,8 +24,8 @@
                         <td>{{product.price}}</td>
                         <td>{{product.stock}}</td>
                         <td>
-                            <fa-icon *ngIf="validateAdmin" [icon]="faEdit" (click)="iconClick(product.id)"></fa-icon>
-                            <fa-icon *ngIf="validateAdmin" [icon]="faAdd"></fa-icon>
+                            <fa-icon *ngIf="validateAdmin" title="Edit product"  [icon]="faEdit" (click)="iconClick(product.id)"></fa-icon>
+                            <fa-icon *ngIf="!validateAdmin" title="Add to chart" [icon]="faAdd"></fa-icon>
                         </td>
                     </tr>
                 </tbody>
