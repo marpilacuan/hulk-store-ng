@@ -1,0 +1,35 @@
+<div class="container">
+    <div *ngIf="validateAdmin" class="container" style="align-items: left;">
+        <nav class="navbar navbar-expand navbar-dark bg-dark">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" routerLink="{{routerLinkS}}" routerLinkActive="active">+ Add new</a>
+            </div>
+        </nav>
+    </div>
+    <div class="card">
+        <h3 class="text-center"></h3>
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                    <th>NAME</th>
+                    <th>CATEGORY</th>
+                    <th>PRICE</th>
+                    <th>STOCK</th>
+                    <th>ACTIONS</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let product of products">
+                        <td>{{product.name}}</td>
+                        <td>{{product.category}}</td>
+                        <td>{{product.price}}</td>
+                        <td>{{product.stock}}</td>
+                        <td>
+                            <fa-icon *ngIf="validateAdmin" [icon]="faEdit" (click)="iconClick(product.id)"></fa-icon>
+                            <fa-icon *ngIf="validateAdmin" [icon]="faAdd"></fa-icon>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

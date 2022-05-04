@@ -1,0 +1,80 @@
+<div class="container">
+    <div *ngIf="alert" class="alert alert-success alert-dismissible fade show" role="alert">
+        <Strong>Success!</Strong> The product has been {{message}}.
+        <button (click)="closeAlert()" type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="card">
+        <h4 class="card-header" style="text-align:center">Register new product</h4>
+        <div class="card-body">
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        <label for="productName">Name *</label>
+                        <input type="text" formControlName="productName" class="form-control"
+                            [ngClass]="{ 'is-invalid': submitted }" maxlength="25"/>
+                            <div *ngIf="submitted" class="invalid-feedback">
+                                <div *ngIf="submitted">Name is required</div>
+                            </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="email">Category *</label>
+                        <select name="category" formControlName="categorySelected" class="form-control">
+                            <option  [value]="item" *ngFor="let item of categories">{{item}}</option>
+                        </select>
+                            <div *ngIf="submitted" class="invalid-feedback">
+                                <div *ngIf="submitted">Category is required</div>
+                            </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        <label for="price">Price *</label>
+                        <input type="number" formControlName="price" class="form-control"
+                            [ngClass]="{ 'is-invalid': submitted }" maxlength="10" />
+                            <div *ngIf="submitted" class="invalid-feedback">
+                                <div *ngIf="submitted">Price is required</div>
+                            </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="stock">Stock *</label>
+                        <input type="number" formControlName="stock" class="form-control"
+                            [ngClass]="{ 'is-invalid': submitted }" maxlength="9"/>
+                            <div *ngIf="submitted" class="invalid-feedback">
+                                <div *ngIf="submitted">Stock is required</div>
+                            </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary">
+                        <span class="spinner-border spinner-border-sm mr-1"></span>
+                        Create
+                    </button>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="card">
+        <h3 class="text-center"></h3>
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                    <th>TYPE RECORD</th>
+                    <th>DATE REGISTRATION</th>
+                    <th>TOTAL ITEMS</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let product of productRecordCol">
+                        <td>{{product.typeRecord}}</td>
+                        <td>{{product.dateRecord}}</td>
+                        <td>{{product.totalItems}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
